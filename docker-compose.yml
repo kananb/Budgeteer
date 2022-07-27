@@ -9,3 +9,4 @@ services:
       - ${PORT:-80}:${PORT:-80}
     environment:
       - PORT=${PORT:-80}
+      - GIN_MODE=release
