@@ -12,17 +12,12 @@ import (
 func main() {
 	r := gin.Default()
 
-	r.GET("/ping", func(c *gin.Context) {
-		c.JSON(http.StatusOK, gin.H{
-			"message": "pong",
-		})
-	})
-
+	r.Static("/", "/app/client/build")
 	port, exists := os.LookupEnv("PORT")
 	if !exists {
 		log.Fatal("no listening port provided")
 	}
 
-	fmt.Printf("Listening at :%v/ping ...\n", port)
+	fmt.Printf("Listening at :%v ...\n", port)
 	http.ListenAndServe(fmt.Sprintf(":%v", port), r)
 }
